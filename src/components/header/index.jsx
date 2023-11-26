@@ -28,8 +28,8 @@ export default function Header({ isLanding = false, withLogo = true }) {
         return ClaimsRef.current.classList.add("active_link");
       case "/auth":
         return AuthRef.current.classList.add("active_link");
-      case "/renew":
-        return RenewRef.current.classList.add("active_link");
+      // case "/renew":
+      //   return RenewRef.current.classList.add("active_link");
       default:
         return null;
     }
@@ -96,7 +96,6 @@ export default function Header({ isLanding = false, withLogo = true }) {
                 data-aos="slide-right"
                 data-aos-duration="2500"
                 data-aos-delay="2000"
-                onClick={openPage}
               >
                 <img
                   src={

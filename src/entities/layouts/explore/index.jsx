@@ -14,14 +14,20 @@ export default function ExplorePageLayout({ policy }) {
 
   React.useEffect(() => {
     const currPolicyConfig = EXPLORE_CONFIG[currPolicy];
-    console.log('curr policy config: ', currPolicyConfig);
+    console.log("curr policy config: ", currPolicyConfig);
     setPolicyConfig(currPolicyConfig);
-  }, [])
+
+    return () => null;
+  }, []);
 
   return (
     <ExplorePageLayoutWrapper>
       <Header isLanding={false} />
-      <img src={Assets.exploreBackgrounds.highlightBackground} alt="" id="highlight_background"/>
+      <img
+        src={Assets.exploreBackgrounds.highlightBackground}
+        alt=""
+        id="highlight_background"
+      />
       <div id="explore_sidebar">
         <ExploreSidebar currPolicy={currPolicy} />
       </div>
@@ -29,16 +35,17 @@ export default function ExplorePageLayout({ policy }) {
         <div id="options_container">
           <Grid columns={2} stackable id="options">
             <Grid.Column id="popular_option">
-              <ExploreOption isPopular={true} config={policyConfig?.popularOption}/>
+              <ExploreOption
+                isPopular={true}
+                config={policyConfig?.popularOption}
+              />
             </Grid.Column>
             <Grid.Column id="other_options">
-              {
-                policyConfig?.options?.map((option, _idx) => (
-                 <div className="explore_option_card">
-                   <ExploreOption config={option} key={_idx} />
-                 </div>
-                ))
-              }
+              {policyConfig?.options?.map((option, _idx) => (
+                <div className="explore_option_card">
+                  <ExploreOption config={option} key={_idx} />
+                </div>
+              ))}
             </Grid.Column>
           </Grid>
           <div id="request_quote"></div>

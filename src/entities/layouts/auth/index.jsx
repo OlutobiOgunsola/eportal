@@ -11,8 +11,6 @@ export default function AuthPageLayout({ policy }) {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
 
-  React.useEffect(() => {}, []);
-
   const SubmitAuthDetailsHandler = function (event) {
     return SubmitAuthDetails({});
   };
@@ -21,13 +19,13 @@ export default function AuthPageLayout({ policy }) {
     let target = event.target,
       value = target.value;
 
-    console.log('handleEmail', value);
+    console.log("handleEmail", value);
     return setEmail((oldValue) => value);
   };
   const handlePassword = function (event) {
     let target = event.target,
       value = target.value;
-    console.log('handlePassword', value);
+    console.log("handlePassword", value);
 
     return setPassword((oldValue) => value);
   };
@@ -36,11 +34,6 @@ export default function AuthPageLayout({ policy }) {
       <Header isLanding={false} withLogo={false} />
       <AuthForm onSubmit={SubmitAuthDetailsHandler}>
         <div id="auth_form_header">
-          <h3>Royal Exchange General Insurance Company</h3>
-          <p>Credential Management Service</p>
-        </div>
-
-        <div id="auth_form_intent">
           <h3>Sign In</h3>
           <p>Please provide your credentials to continue.</p>
         </div>
@@ -62,20 +55,29 @@ export default function AuthPageLayout({ policy }) {
               name="secure_key"
               value={password}
               onChange={handlePassword}
-              placeholder={`${INPUT_PLACEHOLDERS.PASSWORD_CREATE}`}
+              placeholder={`${INPUT_PLACEHOLDERS.PASSWORD_INPUT}`}
               config={{
-                Placeholder: INPUT_PLACEHOLDERS.PASSWORD_CREATE,
+                Placeholder: INPUT_PLACEHOLDERS.PASSWORD_INPUT,
                 ...CONFIGURATIONS.INPUTS.PASSWORD,
               }}
             />
           </span>
 
-          <span className="row">
-            <input type="checkbox" placeholder="Remember Me" />
+          <span className="row" id="persist_signin_row">
+            <input
+              type="checkbox"
+              placeholder="Remember Me"
+              name="persist_signin"
+              id="persist_signin"
+            />
+            <label htmlFor="persist_signin">Remember Me</label>
           </span>
         </div>
 
-        <div id="auth_form_footer"></div>
+        <div id="auth_form_footer">
+          <h3>Royal Exchange General Insurance Company</h3>
+          <p>Credential Management Service</p>
+        </div>
       </AuthForm>
 
       <div id="auth_form_image" data-aos="fade-in" data-aos-duration="1000">
